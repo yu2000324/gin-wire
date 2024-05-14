@@ -1,23 +1,23 @@
-GOPATH:=$(shell go env GOPATH)
+GOPATH:=$(shell /Users/barry/sdk/go1.22.0/bin/go env GOPATH)
 VERSION=$(shell git describe --tags --always)
 APP_MAIN_DIR=cmd/app
 
 .PHONY: run
 # run
 run:
-	cd $(APP_MAIN_DIR) && go run main.go wire_gen.go app.go
+	cd $(APP_MAIN_DIR) && /Users/barry/sdk/go1.22.0/bin/go run main.go wire_gen.go app.go
 
 .PHONY: build
 # 自动根据平台编译二进制文件
 build:
-	mkdir -p bin/ && go build -ldflags "-X main.Version=$(VERSION)" -o ./bin/ ./...
+	mkdir -p bin/ && /Users/barry/sdk/go1.22.0/bin/go build -ldflags "-X main.Version=$(VERSION)" -o ./bin/ ./...
 
 .PHONY: generate
 # 生成应用所需的文件
 generate:
-	go mod tidy
-	go get github.com/google/wire/cmd/wire@latest
-	go generate ./...
+	/Users/barry/sdk/go1.22.0/bin/go mod tidy
+	/Users/barry/sdk/go1.22.0/bin/go get github.com/google/wire/cmd/wire@latest
+	/Users/barry/sdk/go1.22.0/bin/go generate ./...
 
 .PHONY: wire
 # wire
